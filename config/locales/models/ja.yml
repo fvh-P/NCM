@@ -1,0 +1,22 @@
+ja:
+  activerecord:
+    models:
+      user: プロデューサー
+      name_card: 名刺
+    attributes:
+      user:
+        id: ID
+        created_at: 登録日時
+        updated_at: 更新日時
+        uid: アカウント名
+        email: メールアドレス
+        provider: アカウントプロバイダ
+      name_card:
+        id: 名刺No.
+        created_at: 登録日時
+        updated_at: 更新日時
+        user_id: プロデューサーID
+        free_text: 自己紹介文
+        password: 合言葉
+        name: プロデューサー名
+        card_name: 名刺の名前

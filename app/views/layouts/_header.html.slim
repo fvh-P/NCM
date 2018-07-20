@@ -1,0 +1,30 @@
+nav.navbar.navbar-expand-lg.navbar-dark.fixed-top.bg-dark
+  .container-fluid.col-12.col-lg-10
+    = link_to 'THE NAMECARDM@STER', root_path, id: 'logo', class: 'navbar-brand'
+    button.navbar-toggler[type="button" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="collapsible"]
+      span.navbar-toggler-icon
+    #Navber.collapse.navbar-collapse.justify-content-end
+      ul.navbar-nav.my-sm-2.my-0.my-lg-0
+        li.nav-item
+          = link_to 'つかいかた・注意事項', help_path, class: 'nav-link'
+        - if user_signed_in?
+          li.nav-item.dropdown
+            a#navbarDropdown.dropdown-toggle.nav-link[href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"]
+              = current_user.uid
+            ul.dropdown-menu.dropdown-menu-right
+              li
+                = link_to 'マイページ', current_user, class: 'dropdown-item'
+              li
+                = link_to '受け取りリスト', received_cards_path, class: 'dropdown-item'
+              li
+                = link_to '名刺を作成', new_name_card_path, class: 'dropdown-item'
+              li.dropdown-divider
+              li
+                = link_to 'ログアウト', destroy_user_session_path, method: :delete, class: 'dropdown-item'
+        - else
+          li.nav-item.dropdown
+            a#navbarDropdown.dropdown-toggle.nav-link[href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"]
+              |  ログイン 
+            ul.dropdown-menu.dropdown-menu-right
+              li
+                = link_to 'mastodonでログイン', user_mastodon_omniauth_authorize_path, class: 'dropdown-item'

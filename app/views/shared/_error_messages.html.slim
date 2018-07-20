@@ -1,0 +1,10 @@
+- if object.errors.any?
+  #error_explanation
+    .alert.alert-error
+      |  フォームの入力内容に 
+      = object.errors.count
+      | 個のエラーがあります。 
+    ul
+      - object.errors.full_messages.each do |msg|
+        li
+          = msg

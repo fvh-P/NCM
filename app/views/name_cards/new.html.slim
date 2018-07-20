@@ -1,0 +1,31 @@
+- unless user_signed_in?
+  |  ログインしてください。 
+- else
+  - provide(:title, '新しい名刺の作成')
+  h1
+    | 新しい名刺の作成
+  .row.justify-content-center
+    .col-md-8
+      p
+        | ※印は必須の項目です。
+      = form_for(@name_card, url: name_cards_path) do |f|
+        = render 'shared/error_messages', object: f.object
+        = f.label :card_name, '※ 名刺の名称'
+        = f.text_field :card_name, class: 'form-control'
+        = f.label :name, '※ あなたのプロデューサー名 (後ろに"P"はつきません)'
+        = f.text_field :name, class: 'form-control'
+        = f.label :name, '名刺画像(表)'
+        = f.file_field :image, class: 'form-control'
+        = f.hidden_field :image_cache
+        = f.label :name, '名刺画像(裏)'
+        = f.file_field :image_back, class: 'form-control'
+        = f.hidden_field :image_back_cache
+        = f.label :free_text, '自己紹介文 (1000文字以内)'
+        = f.text_area :free_text, class: 'form-control'
+        = f.label :password, '合言葉 (無しの場合は空欄のままにしてください。設定するとあなた以外が閲覧する場合に合言葉の入力が必要になります。)'
+        = f.text_field :password, class: 'form-control'
+        = f.label :password_confirmation, '合言葉 (もう一度入力)'
+        = f.text_field :password_confirmation, class: 'form-control'
+        = render 'idol_search'
+        = render 'idol_table', f: f
+        = f.submit '名刺を作成する', class: 'btn btn-primary'

@@ -1,0 +1,25 @@
+h1
+  | ようこそ
+p
+  | THE NAMECARDM@STERは、アイマスP向けの名刺管理・交換サービスです。
+p
+  = link_to 'つかいかた・注意事項', help_path
+  | のページをよく読んで、注意事項を守ってご利用ください。
+br
+.col-12.col-lg-4
+  - if user_signed_in?
+    = link_to 'マイページ', current_user, class: 'btn btn-primary namecard__btn'
+  - else
+    = link_to 'mastodonアカウントでログインする', user_mastodon_omniauth_authorize_path, class: 'btn btn-primary namecard__btn'
+.col-12.col-lg-6
+  div
+    | 名刺IDを指定して名刺を見る
+  = form_tag(name_cards_path(:id), method: :get) do
+    div
+      | 名刺ID
+    = number_field_tag :id
+    div
+      | 合言葉
+    = text_field_tag :password
+    = submit_tag '閲覧', name: nil
+.w-100

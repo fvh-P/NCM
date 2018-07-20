@@ -1,0 +1,41 @@
+- provide(:title, '名刺の編集')
+h1
+  | 名刺の編集
+.row.justify-content-center
+  .col-md-8
+    = form_for(@name_card, url: name_card_path) do |f|
+      = render 'shared/error_messages', object: f.object
+      = f.label :card_name, '名刺の名前'
+      = f.text_field :card_name, class: 'form-control'
+      = f.label :name, 'あなたのプロデューサー名 (後ろに"P"はつきません)'
+      = f.text_field :name, class: 'form-control'
+      = f.label :image, '名刺画像(表)'
+      = f.file_field :image
+      = f.hidden_field :image_cache
+      - if @name_card.persisted? && @name_card.image?
+        label
+          = f.label :remove_image, '名刺画像(表)を削除'
+          = f.check_box :remove_image
+      br
+      - if @name_card.image?
+        = image_tag @name_card.image.url, class: 'img-thumbnail'
+      br
+      = f.label :image_back, '名刺画像(裏)'
+      br
+      = f.file_field :image_back
+      = f.hidden_field :image_back_cache
+      - if @name_card.persisted? && @name_card.image_back?
+        label
+          = f.label :remove_image_back, '名刺画像(裏)を削除'
+          = f.check_box :remove_image_back
+      br
+      - if @name_card.image_back?
+        = image_tag @name_card.image_back.url, class: 'img-thumbnail'
+      br
+      = f.label :free_text, '自己紹介文 (1000文字以内)'
+      = f.text_area :free_text, class: 'form-control'
+      p
+        | 合言葉は変更できません。
+      = render 'idol_search'
+      = render 'idol_table', f: f
+      = f.submit '名刺を更新する', class: 'btn btn-primary'

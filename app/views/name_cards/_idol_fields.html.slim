@@ -1,0 +1,7 @@
+tr.nested-fields
+  td
+    .field
+      = f.hidden_field :name
+      = f.object.name
+  td
+    = link_to_remove_association '削除', f, class: 'btn btn-sm btn-danger', role: 'button'

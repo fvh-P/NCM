@@ -1,0 +1,18 @@
+doctype html
+html
+  head
+    |  　
+    title
+      = full_title(yield(:title))
+    |  　
+    = render 'layouts/rails_default'
+    |  　
+    = render 'layouts/shim'
+  body
+    = render 'layouts/header'
+    .container-fluid.col-12.col-lg-8
+      - flash.each do |message_type, message|
+        div class="alert alert-#{ message_type == 'notice' ? 'warning'  : message_type}" role="alert"
+          = message
+      = yield
+    = render 'layouts/footer'

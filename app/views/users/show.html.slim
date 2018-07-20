@@ -1,0 +1,23 @@
+- unless user_signed_in?
+  | ログインしてください。
+- else
+  - provide(:title, current_user.uid)
+  .jumbotron.jumbotron-fluid
+    .container
+      h1.display-4
+        | マイページ
+      p
+        | こんにちは。
+        br
+        | このページにはあなたが作成した名刺が表示されます。
+        br
+        | あなたのP名刺を登録して、Web上で見られるようにしましょう！
+      = link_to '新しい名刺の作成 »', new_name_card_path, class: 'btn btn-primary namecard-new-btn'
+      = link_to '受け取りリスト »', received_cards_path, class: 'btn btn-primary namecard-new-btn'
+  .container
+    .row
+      - @users_name_cards.each do |card|
+        .col-md-4
+          = link_to card.card_name, name_card_path(card.id), class: 'btn btn-secondary namecard-list-btn'
+          - if card.image?
+            = image_tag card.image.url, class: 'img-thumbnail'

@@ -1,0 +1,94 @@
+- if @name_card.user_id != current_user&.id && !authenticated?
+  p
+    = '自分以外の名刺を閲覧するためには、名刺作成者が設定した合言葉が必要です'
+  br
+  = form_tag(@name_card, method: :get) do
+    = label_tag :合言葉
+    = text_field_tag :password
+    = submit_tag '認証', name: nil
+- else
+  .row
+    - if @name_card.user_id == current_user&.id
+      .col-12
+        = link_to '編集', edit_name_card_path, title: '編集する', class: 'btn btn-success namecard__btn'
+        = link_to '削除', @name_card, method: :delete, data: {\
+                  confirm: "本当に<strong>#{@name_card.card_name}</strong>を削除してよろしいですか？<br>削除した場合、この名刺をもらった相手は二度とこの名刺を見ることができません。",\
+                  verify: "#{@name_card.card_name}",\
+                  verify_text: '削除する場合は名刺の名称を入力してください',\
+                  cancel: 'やめる',\
+                  commit: '削除する'\
+          }, title: '削除する', class: 'btn btn-danger namecard__btn'
+    - elsif user_signed_in? && @is_received
+      .col-12
+        | 受け取りリストに追加済みです。
+      .col-12.namecard__btn
+        = link_to '受け取りリストから削除', received_card_path(id: @name_card), method: :delete, data: {\
+                  confirm: "受け取りリストから<strong>#{@name_card.card_name}</strong>を削除してよろしいですか？",\
+                  cancel: 'やめる',\
+                  commit: '削除する'\
+          }, title: '削除の確認', class: 'btn btn-danger namecard__btn'
+    - elsif user_signed_in?
+      .col-12.namecard__btn
+        = link_to '受け取りリストに追加', received_cards_path(id: @name_card, password: @name_card.password), method: :post, class: 'btn btn-success namecard__btn'
+    - else
+      .col-12
+        | ログインすると、名刺を受け取りリストに追加して管理できます。
+      .col-12.namecard__btn
+        = link_to 'ログイン', new_user_session_path, class: 'btn btn-primary'
+    .col-12.namecard__cardname
+      h5
+        = @name_card.card_name
+      h5
+        | 名刺ID: 
+        = @name_card.id
+    .col-12
+      .namecard__caption
+        p
+          | プロデューサー名
+      .namecard__producername
+        = @name_card.name
+    .col-12
+      .namecard__caption
+        p
+          | 自己紹介
+      .namecard__introduction
+        = simple_format(@name_card.free_text)
+    .w-100
+    - unless @name_card.idols.nil?
+      .col-12
+        .namecard__caption
+          p
+            | 担当アイドル
+        .namecard__idols
+          - @name_card.idols.each do |idol|
+            span[class='btn btn-sm btn-info namecard-new-btn']
+              = idol.name
+    - if @name_card.image?
+      .col-12.col-lg-6
+        .namecard__caption
+          p
+            | 名刺画像(表)
+        .namecard__image
+          = link_to @name_card.image.url, target: '_blank' do
+            - image_tag @name_card.image.url, class: 'img-thumbnail'
+    - if @name_card.image_back?
+      .col-12.col-lg-6
+        .namecard__caption
+          p
+            | 名刺画像(裏)
+        .namecard__image
+          = link_to @name_card.image_back.url, target: '_blank' do
+            = image_tag @name_card.image_back.url, class: 'img-thumbnail'
+    .w-100
+    - if @name_card.user_id == current_user&.id
+      .col-12.col-lg-8
+        .namecard__caption
+          p
+            | QRコード(名刺作成者にのみ表示)
+        .namecard__qr
+          p
+            |  このQRコードで、名刺に直接アクセスできます。
+            br
+            |  紙の名刺のどこかに表示して頂けると便利です。
+            br
+          = image_tag @qr, class: 'img-thumbnail'

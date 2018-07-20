@@ -1,0 +1,224 @@
+/* mixins, variables, etc. */
+
+$gray-medium-light: #eaeaea;
+@mixin box_sizing {
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+}
+
+/* universal */
+
+body {
+  padding-top: 4.2rem;
+  padding-bottom: 4rem;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+  h1 {
+    margin-bottom: 10px;
+  }
+}
+
+/* typography */
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 2em;
+  letter-spacing: -1px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: normal;
+  border-bottom: solid 1px #999999;
+  padding: 0.5em 0;
+
+  p {
+    margin: 0;
+    padding: 0;
+  }
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+
+.namecard {
+  vertical-align: middle;
+
+  &__btn {
+    margin-bottom: 10px;
+    margin-right: 5px;
+  }
+
+  &__image {
+    display: inline-block;
+    padding-top: 1em;
+
+    img {
+      width: 100%;
+      height: 100%;
+      padding-bottom: 0.5em;
+    }
+  }
+
+  &__cardname {
+    padding-bottom: 0.5em;
+  }
+
+  &__producername {
+    padding: 0.5em 1em;
+    font-size: 120%;
+  }
+
+  &__caption {
+    padding: 0 0.5em;
+    border-bottom: solid 1px #999999;
+
+    p {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  &__introduction {
+    padding: 0.5em 1em;
+
+    p {
+      font-size: 100%;
+    }
+  }
+
+  &__qr {
+    p {
+      padding-top: 0.5em;
+      padding-left: 1em;
+      font-size: 90%;
+    }
+
+    img {
+      margin: 0.5em 1em;
+    }
+  }
+
+  &__idols {
+    padding: 0.5em 1em;
+  }
+}
+
+.table th,
+.table td {
+  padding: 0.5rem 0.75rem 0.5rem 0.75rem;
+  vertical-align: middle;
+  border-top: 1px solid #dee2e6;
+}
+
+.namecard-new-btn,
+.namecard-list-btn {
+  margin: 0px 5px 5px 0px;
+}
+
+.forbidden {
+  color: red;
+}
+
+.warning {
+  color: #ff9000;
+}
+
+.normal {
+  color: black;
+}
+
+/* header */
+
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+/* forms */
+
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
+  width: 100%;
+  margin-bottom: 15px;
+  @include box_sizing;
+}
+
+input {
+  height: auto !important;
+}
+
+#error_explanation {
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
+}
+
+.field_with_errors {
+  input {
+    @extend .is-invalid;
+  }
+  .form-control {
+    color: $danger;
+  }
+}
+
+/* レスポンシブのフォントサイズ指定 */
+
+@media screen and (min-width: 0px) and (max-width : 767px){
+  * {
+    font-size: 24px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width : 991px){
+  * {
+    font-size: 28px;
+  }
+
+  .namecard__qr {
+    img {
+      width: 320px;
+      height: 320px;
+    }
+  }
+}
+
+@media screen and (min-width : 992px) {
+  * {
+    font-size: 16px;
+  }
+}

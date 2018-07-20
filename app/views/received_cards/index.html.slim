@@ -1,0 +1,24 @@
+- unless user_signed_in?
+  | ログインしてください。
+- else
+  - provide(:title, '受け取りリスト')
+  .jumbotron.jumbotron-fluid
+    .container
+      h1.display-4
+        | 受け取りリスト
+      p
+        | こんにちは。
+        br
+        | このページにはあなたが受け取った名刺が表示されます。
+        br
+        | 同僚の名刺をリストに登録してカジュアルに管理しましょう！
+      = link_to 'マイページ »', current_user, class: 'btn btn-primary namecard-new-btn'
+  .container
+    .row
+      - @received_cards.map(&:name_card).each do |card|
+        .col-md-4
+          = card.name
+          br
+          = link_to card.card_name, name_card_path(id: card.id, password: card.password), class: 'btn btn-secondary namecard-list-btn'
+          - if card.image?
+            = image_tag card.image.url, class: 'img-thumbnail'

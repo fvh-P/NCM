@@ -1,0 +1,55 @@
+.search-area
+  label
+    | アイドル検索
+  input#search-text[form='search-form' type='text' placeholder='アイドル名(の一部)を入力' class='form-control']
+  button#search[form='search-form' class='btn btn-primary namecard-new-btn']
+    | 検索
+.search-result
+  .search-result__hit-num
+  #search-result__list
+
+javascript:
+  $(function () {
+    searchWord = function () {
+      var searchResult,
+      searchText = $('#search-text').val(),
+      hitNum,
+      searchResult = [];
+      $('#search-result__list').empty();
+      $('.search-result__hit-num').empty();
+      if (searchText != '') {
+        var f = function (name) {
+          var Query = ['PREFIX schema: <http://schema.org/>PREFIX imas: <https://sparql.crssnky.xyz/imasrdf/URIs/imas-schema.ttl#>SELECT distinct ?name WHERE { ?s imas:nameKana|schema:name ?o; ?p imas:Idol. FILTER(regex(str(?o), "', '" )). ?s schema:name ?name.}order by(?name)'];
+          var url = 'https://sparql.crssnky.xyz/spql/imas/query?query=' + encodeURIComponent(Query[0] + name + Query[1]);
+          var req = new XMLHttpRequest();
+          req.onreadystatechange = function () {
+            if (req.readyState == 4) {
+              JSON.parse(req.responseText)['results']['bindings'].forEach((item) => {
+                searchResult.push(item['name']['value']);
+              });
+              for (var i = 0; i < searchResult.length; i++) {
+                $('<span>').attr({
+                  'class': 'btn btn-sm btn-info namecard-new-btn add_fields',
+                  'role': 'button',
+                  'data-association-insertion-node': '#detail-association-insertion-point',
+                  'data-association': 'idol',
+                  'data-associations': 'idols',
+                  'data-association-insertion-template': "<tr class='nested-fields'><td><div class='field'>" +
+                  `<input type='hidden' name='name_card[idols_attributes][new_idols][name]' id='name_card_idols_attributes_new_idols_name' value='${searchResult[i]}'>${searchResult[i]}</input></div></td>` +
+                  "<td><input type='hidden' name='name_card[idols_attributes][new_idols][_destroy]' id='name_card_idols_attributes_new_idols__destroy' value='false'/>" +
+                  "<a class='btn btn-sm btn-danger remove_fields dynamic' role='button' href='#'>削除</a></td></tr>",
+                  'href': '#',
+                }).text(searchResult[i]).appendTo('#search-result__list');
+              }
+              hitNum = '<span>検索結果</span>：' + searchResult.length + '件見つかりました。<br>名前をクリックして担当に追加してください。';
+              $('.search-result__hit-num').append(hitNum);
+            }
+          };
+          req.open('GET', url, true);
+          req.send(null);
+        }
+        f(searchText);
+      }
+    };
+    $('#search').on('click', searchWord);
+  });
