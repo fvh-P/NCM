@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :user do
-    provider 'example.com'
+    provider 'mastodon'
     uid 'test@example.com'
     email 'test@example.com'
     password '12345678'
