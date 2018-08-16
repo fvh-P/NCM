@@ -2,12 +2,10 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   include CarrierWave::RMagick
 
-  if Rails.env.development?
-    storage :file
-  elsif Rails.env.test?
-    storage :file
-  else
+  if use_s3?
     storage :fog
+  else
+    storage :file
   end
 
   # Override the directory where uploaded files will be stored.
@@ -25,7 +23,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # end
 
   # Process files as they are uploaded:
-  process resize_to_limit: [720, 720]
+  process resize_to_limit: [640, 640]
 
   # Create different versions of your uploaded files:
 
