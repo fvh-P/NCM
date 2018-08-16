@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180621131912) do
+ActiveRecord::Schema.define(version: 20180816102050) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,10 @@ ActiveRecord::Schema.define(version: 20180621131912) do
     t.string "password"
     t.string "card_name", limit: 32
     t.string "image_back"
+    t.string "twitter_account_name"
+    t.string "mastodon_account_name"
+    t.string "mastodon_instance_name"
+    t.string "free_account"
     t.index ["user_id"], name: "index_name_cards_on_user_id"
   end
 
