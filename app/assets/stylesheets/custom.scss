@@ -100,7 +100,8 @@ p {
     }
   }
 
-  &__introduction {
+  &__introduction,
+  &__sns-name {
     padding: 0.5em 1em;
 
     p {
@@ -147,6 +148,12 @@ p {
 
 .normal {
   color: black;
+}
+
+.atmark {
+  text-align: right;
+  vertical-align: middle;
+  width: 17.5px
 }
 
 /* header */

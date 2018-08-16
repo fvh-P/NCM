@@ -63,6 +63,7 @@ class NameCardsController < ApplicationController
   def name_card_params
     params.require(:name_card).permit(
       :card_name, :name, :free_text, :password, :password_confirmation,
+      :twitter_account_name, :mastodon_account_name, :mastodon_instance_name, :free_account,
       :image, :image_cache, :remove_image, :image_back, :image_back_cache, :remove_image_back,
       idols_attributes: [:name, :id, :_destroy]
     ).merge(

@@ -22,6 +22,22 @@
         = f.hidden_field :image_back_cache
         = f.label :free_text, '自己紹介文 (1000文字以内)'
         = f.text_area :free_text, class: 'form-control'
+        = f.label :twitter_account, 'Twitterアカウント'
+        table.col-md-12
+          td.atmark
+            | @
+          td
+            = f.text_field :twitter_account_name, class: 'form-control', placeholder: 'ユーザ名', style: 'margin: 5px 0px 5px 0px'
+        = f.label :mastodon_account, 'mastodonアカウント'
+        table.col-md-12
+          td.atmark
+            | @
+          td
+            = f.text_field :mastodon_account_name, class: 'form-control', placeholder: 'ユーザ名', style: 'margin: 5px 0px 5px 0px'
+          td.atmark
+            | @
+          td
+            = f.text_field :mastodon_instance_name, class: 'form-control', placeholder: 'インスタンス名', style: 'margin: 5px 0px 5px 0px'
         = f.label :password, '合言葉 (無しの場合は空欄のままにしてください。設定するとあなた以外が閲覧する場合に合言葉の入力が必要になります。)'
         = f.text_field :password, class: 'form-control'
         = f.label :password_confirmation, '合言葉 (もう一度入力)'

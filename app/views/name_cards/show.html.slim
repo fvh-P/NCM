@@ -39,7 +39,7 @@
       h5
         = @name_card.card_name
       h5
-        | 名刺ID: 
+        | 名刺ID:
         = @name_card.id
     .col-12
       .namecard__caption
@@ -63,6 +63,21 @@
           - @name_card.idols.each do |idol|
             span[class='btn btn-sm btn-info namecard-new-btn']
               = idol.name
+    - if @name_card.twitter_account_name.present?
+      .col-6.col-lg-4
+        .namecard__caption
+          p
+            | Twitterアカウント
+        .namecard__sns-name
+          = link_to "@#{@name_card.twitter_account_name}", "https://twitter.com/#{@name_card.twitter_account_name}", target: '_blank'
+    - if @name_card.mastodon_account_name.present? && @name_card.mastodon_instance_name.present?
+      .col-6.col-lg-4
+        .namecard__caption
+          p
+            | mastodonアカウント
+        .namecard__sns-name
+          = link_to "@#{@name_card.mastodon_account_name}@#{@name_card.mastodon_instance_name}", "https://#{@name_card.mastodon_instance_name}/@#{@name_card.mastodon_account_name}", target: '_blank'
+      .w-100
     - if @name_card.image?
       .col-12.col-lg-6
         .namecard__caption

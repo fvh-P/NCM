@@ -34,6 +34,22 @@ h1
       br
       = f.label :free_text, '自己紹介文 (1000文字以内)'
       = f.text_area :free_text, class: 'form-control'
+      = f.label :twitter_account, 'Twitterアカウント名'
+      table.col-md-12
+        td.atmark
+          | @
+        td
+          = f.text_field :twitter_account_name, class: 'form-control', placeholder: 'ユーザ名', style: 'margin: 5px 0px 5px 0px'
+      = f.label :mastodon_account, 'mastodonアカウント名'
+      table.col-md-12
+        td.atmark
+          | @
+        td
+          = f.text_field :mastodon_account_name, class: 'form-control', placeholder: 'ユーザ名', style: 'margin: 5px 0px 5px 0px'
+        td.atmark
+          | @
+        td
+          = f.text_field :mastodon_instance_name, class: 'form-control', placeholder: 'インスタンス名', style: 'margin: 5px 0px 5px 0px'
       p
         | 合言葉は変更できません。
       = render 'idol_search'
