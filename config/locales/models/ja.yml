@@ -3,6 +3,8 @@ ja:
     models:
       user: プロデューサー
       name_card: 名刺
+      idol: アイドル
+      received_card: 受け取りリスト
     attributes:
       user:
         id: ID
@@ -20,3 +22,8 @@ ja:
         password: 合言葉
         name: プロデューサー名
         card_name: 名刺の名前
+        twitter_account_name: Twitterのユーザ名
+        mastodon_account_name: mastodonのユーザ名
+        mastodon_instance_name: mastodonのインスタンス名
+      idol:
+        name: アイドル名
