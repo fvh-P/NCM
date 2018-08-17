@@ -19,6 +19,8 @@ ja:
         updated_at: 更新日時
         user_id: プロデューサーID
         free_text: 自己紹介文
+        image: 名刺画像(表)
+        image_back: 名刺画像(裏)
         password: 合言葉
         name: プロデューサー名
         card_name: 名刺の名前
