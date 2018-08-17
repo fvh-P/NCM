@@ -18,6 +18,8 @@
                   cancel: 'やめる',\
                   commit: '削除する'\
           }, title: '削除する', class: 'btn btn-danger namecard__btn'
+        - if current_user.provider == 'mastodon'
+          = link_to 'mastodonにリンクを投稿', "https://#{current_user.uid.match(/.*@(.*)/)[1]}/share?text=私のプロデューサー名刺です。\n#{url_for(only_path: false)}?password=#{@name_card.password}", class: 'btn btn-info namecard__btn'
     - elsif user_signed_in? && @is_received
       .col-12
         | 受け取りリストに追加済みです。
