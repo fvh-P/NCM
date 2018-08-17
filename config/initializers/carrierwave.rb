@@ -20,6 +20,6 @@ CarrierWave.configure do |config|
     CarrierWave::SanitizedFile.sanitize_regexp = /[^[:word:]\.\-\+]/
   end
 
-  # public配下にキャッシュができると参照されてしまうので、予め変えておく。
-  config.cache_dir = "#{Rails.root}/tmp/uploads"
+  config.cache_storage = :fog #キャッシュの場所をS3に変更
+  config.cache_dir = "#{Rails.root}/tmp/uploads" #for Heroku
 end
