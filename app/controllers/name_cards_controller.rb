@@ -21,8 +21,8 @@ class NameCardsController < ApplicationController
   def show
     @name_card = NameCard.find(params[:id])
     @is_received = received?(params[:id])
-    width = 320
-    height = 320
+    width = 160
+    height = 160
     tmp = RQRCode::QRCode.new(url_for(controller: :name_cards, action: :show, id: @name_card.id, password: @name_card.password), size: 8, level: :m)
     image = ChunkyPNG::RMagick.export(tmp.as_png.resize(width, height))
     @qr = ChunkyPNG::RMagick.import(image).to_data_url
