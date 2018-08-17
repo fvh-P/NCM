@@ -5,11 +5,17 @@ p
 p
   = link_to 'つかいかた・注意事項', help_path
   | のページをよく読んで、注意事項を守ってご利用ください。
-br
-.col-12.col-lg-4
-  - if user_signed_in?
-    = link_to 'マイページ', current_user, class: 'btn btn-primary namecard__btn'
-  - else
+- if user_signed_in?
+    | マイページで名刺を管理しましょう！
+    br
+    br
+    .col-12.col-lg-4
+      = link_to 'マイページ', current_user, class: 'btn btn-primary namecard__btn'
+- else
+  | ログインすると、自分の名刺を作成したり、同僚の名刺を受け取りリストに追加したりできます！
+  br
+  br
+  .col-12.col-lg-4
     = link_to 'mastodonアカウントでログインする', user_mastodon_omniauth_authorize_path, class: 'btn btn-primary namecard__btn'
 .col-12.col-lg-6
   div
