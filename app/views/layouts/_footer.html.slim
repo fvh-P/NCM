@@ -1,11 +1,16 @@
 nav.navbar.navbar-expand.navbar-light.fixed-bottom.bg-light
   .container-fluid.col-12.col-lg-10
-    small
-      |  THE NAMECARDM@STER by 
-      a[href="https://imastodon.net/@f"]
-        | ふぁぼ原
     ul.navbar-nav.my-0
       li.nav-item
-        = link_to "About",   about_path, class: 'nav-link'
+        .nav-link
+          | THE NAMECARDM@STER by
+          a[href="https://imastodon.net/@f"]
+            | ふぁぼ原
+    ul.navbar-nav.my-0
       li.nav-item
-        = link_to "Contact", contact_path, class: 'nav-link'
+        a.nav-link[href="https://github.com/fvh-P/NCM"]
+          | Github
+      li.nav-item
+        = link_to 'About', about_path, class: 'nav-link'
+      li.nav-item
+        = link_to 'Contact', contact_path, class: 'nav-link'
