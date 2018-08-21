@@ -34,7 +34,7 @@
         = link_to '受け取りリストに追加', received_cards_path(id: @name_card, password: @name_card.password), method: :post, class: 'btn btn-success namecard__btn'
     - else
       .col-12
-        | ログインすると、名刺を受け取りリストに追加して管理できます。
+        | ログインすると、この名刺を受け取りリストに追加して管理したり、あなたの名刺を登録したりできます。
       .col-12.namecard__btn
         = link_to 'ログイン', new_user_session_path, class: 'btn btn-primary'
     .col-12.namecard__cardname
