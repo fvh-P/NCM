@@ -13,13 +13,11 @@ CarrierWave.configure do |config|
         :region                 => ENV['S3_REGION'],
     }
 
-    # S3のバケットを指定。
     config.fog_directory     = ENV['S3_BUCKET']
-    # 一般公開させて無いS3の場合は以下の設定を行う。
     config.fog_public     = true
     CarrierWave::SanitizedFile.sanitize_regexp = /[^[:word:]\.\-\+]/
+    config.cache_storage = :fog #キャッシュの場所をS3に変更
   end
 
-  config.cache_storage = :fog #キャッシュの場所をS3に変更
   config.cache_dir = "#{Rails.root}/tmp/uploads" #for Heroku
 end
