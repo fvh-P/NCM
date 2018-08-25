@@ -11,4 +11,8 @@ class StaticPagesController < ApplicationController
 
   def contact
   end
+
+  def apple_touch_icon
+    render file: 'public/apple-touch-icon.png'
+  end
 end
