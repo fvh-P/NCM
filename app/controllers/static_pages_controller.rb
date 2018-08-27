@@ -13,6 +13,6 @@ class StaticPagesController < ApplicationController
   end
 
   def apple_touch_icon
-    render file: 'public/apple-touch-icon.png'
+    send_file 'public/apple_touch_icon.png', :type => 'image/png', :disposition => 'inline'
   end
 end
