@@ -11,8 +11,4 @@ class StaticPagesController < ApplicationController
 
   def contact
   end
-
-  def apple_touch_icon
-    send_file 'public/apple-touch-icon.png', :type => 'image/png', :disposition => 'inline'
-  end
 end
