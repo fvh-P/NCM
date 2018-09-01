@@ -46,6 +46,7 @@ gem 'dotenv-rails'
 gem 'rqrcode_png'
 gem 'cocoon'
 gem 'slim-rails'
+gem 'barnes'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

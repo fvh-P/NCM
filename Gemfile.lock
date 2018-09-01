@@ -54,6 +54,9 @@ GEM
     arel (8.0.0)
     autoprefixer-rails (9.0.0)
       execjs
+    barnes (0.0.7)
+      multi_json (~> 1)
+      statsd-ruby (~> 1.1)
     bcrypt (3.1.12)
     bindex (0.5.0)
     bootstrap (4.1.1)
@@ -459,6 +462,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    statsd-ruby (1.4.0)
     temple (0.8.0)
     thor (0.20.0)
     thread_safe (0.3.6)
@@ -492,6 +496,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  barnes
   bcrypt (~> 3.1.7)
   bootstrap (~> 4.1.1)
   byebug
