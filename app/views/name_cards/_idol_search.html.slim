@@ -11,6 +11,7 @@
 javascript:
   $(function () {
     searchWord = function () {
+      $('#search').prop('disabled', true);
       var searchResult,
       searchText = $('#search-text').val(),
       hitNum,
@@ -27,6 +28,8 @@ javascript:
               JSON.parse(req.responseText)['results']['bindings'].forEach((item) => {
                 searchResult.push(item['name']['value']);
               });
+              $('#search-result__list').empty();
+              $('.search-result__hit-num').empty();
               for (var i = 0; i < searchResult.length; i++) {
                 $('<span>').attr({
                   'class': 'btn btn-sm btn-info namecard-new-btn add_fields',
@@ -50,6 +53,7 @@ javascript:
         }
         f(searchText);
       }
+      $('#search').prop('disabled', false);
     };
     $('#search').on('click', searchWord);
   });
