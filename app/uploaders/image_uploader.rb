@@ -23,7 +23,8 @@ class ImageUploader < CarrierWave::Uploader::Base
   # end
 
   # Process files as they are uploaded:
-  process resize_to_limit: [640, 640]
+  #process resize_animated_gif_to: [640, 640], if: :gif?
+  process resize_to_limit: [640, 640], if: :not_gif?
 
   # Create different versions of your uploaded files:
 
@@ -37,6 +38,14 @@ class ImageUploader < CarrierWave::Uploader::Base
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   def filename
     "#{secure_token}.#{file.extension}" if original_filename.present?
+  end
+
+  def not_gif?(*_)
+    file.content_type != 'image/gif'
+  end
+
+  def size_range
+    1..5.megabytes
   end
 
   protected
