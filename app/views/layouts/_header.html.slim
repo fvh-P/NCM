@@ -27,4 +27,6 @@ nav.navbar.navbar-expand-lg.navbar-dark.fixed-top.bg-dark
               |  ログイン 
             ul.dropdown-menu.dropdown-menu-right
               li
-                = link_to 'mastodonでログイン', user_mastodon_omniauth_authorize_path, class: 'dropdown-item'
+                = link_to 'Mastodonでログイン', user_mastodon_omniauth_authorize_path, class: 'dropdown-item'
+              li
+                = link_to 'Twitterでログイン', user_twitter_omniauth_authorize_path, class: 'dropdown-item'

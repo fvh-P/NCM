@@ -274,6 +274,8 @@ Devise.setup do |config|
     [client.client_id, client.client_secret]
   }
 
+  config.omniauth :twitter, ENV['TWITTER_APP_ID'], ENV['TWITTER_APP_SECRET']
+
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
