@@ -20,15 +20,15 @@ p
     .col-12
       = link_to 'Mastodonアカウントでログイン', user_mastodon_omniauth_authorize_path, class: 'btn btn-primary namecard__btn login-btn'
       = link_to 'Twitterアカウントでログイン', user_twitter_omniauth_authorize_path, class: 'btn btn-primary namecard__btn login-btn'
-    .col-12.col-lg-6
-      div
-        | 名刺IDを指定して名刺を見る
-      = form_tag(name_cards_path(:id), method: :get) do
-        div
-          | 名刺ID
-        = number_field_tag :id
-        div
-          | 合言葉
-        = text_field_tag :password
-        = submit_tag '閲覧', name: nil
-    .w-100
+.col-12.col-lg-6
+  div
+    | 名刺IDを指定して名刺を見る
+  = form_tag(name_cards_path(:id), method: :get) do
+    div
+      | 名刺ID
+    = number_field_tag :id
+    div
+      | 合言葉
+    = text_field_tag :password
+    = submit_tag '閲覧', name: nil
+.w-100
