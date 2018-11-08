@@ -1,6 +1,6 @@
 class NameCard < ApplicationRecord
   belongs_to :user
-  has_many :received_cards
+  has_many :received_cards, dependent: :destroy
   has_many :users, through: :received_cards
   has_many :name_card_idols, dependent: :destroy
   has_many :idols, -> { includes(:name_card_idols).order('name_card_idols.updated_at ASC') }, through: :name_card_idols, autosave: true
