@@ -81,7 +81,7 @@
             | mastodonアカウント
         .namecard__sns-name
           = link_to "@#{@name_card.mastodon_account_name}@#{@name_card.mastodon_instance_name}", "https://#{@name_card.mastodon_instance_name}/@#{@name_card.mastodon_account_name}", target: '_blank'
-      .w-100
+    .w-100
     - if @name_card.image?
       .col-12.col-lg-6
         .namecard__caption
