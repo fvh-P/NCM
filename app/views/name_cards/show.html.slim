@@ -7,6 +7,16 @@
     = text_field_tag :password
     = submit_tag '認証', name: nil
 - else
+  = content_for :ogp do
+    meta property="og:site_name" content="THE NAMECARDM@STER"
+    meta property="og:title"       content="THE NAMECARDM@STER"
+    meta property="og:description" content="#{@name_card.card_name}"
+    meta property="og:type"        content="article"
+    meta property="og:url"         content="#{request.url}"
+    meta property="og:image"       content="#{@name_card.image}"
+    meta name="twitter:card"       content="summary_large_image"
+    meta name="twitter:image"       content="#{@name_card.image}"
+    meta name="twitter:site" content="@fvh_P"
   .row
     - if @name_card.user_id == current_user&.id
       .col-12

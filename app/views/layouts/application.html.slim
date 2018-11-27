@@ -4,9 +4,10 @@ html
     |  　
     title
       = full_title(yield(:title))
-    |  　
+    |
+    = yield :ogp
     = render 'layouts/rails_default'
-    |  　
+    |
     = render 'layouts/shim'
     link[rel="icon" href="/favicon.ico" type="image/vnd.microsoft.icon"]
     link[rel="shortcut icon" href="/favicon.ico" type="image/vnd.microsoft.icon"]
