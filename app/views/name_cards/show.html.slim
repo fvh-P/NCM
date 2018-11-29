@@ -31,7 +31,7 @@
         - if current_user.provider == 'mastodon'
           = link_to 'Mastodonにリンクを投稿', URI.encode("https://#{current_user.uid.match(/.*@(.*)/)[1]}/share?text=私のプロデューサー名刺です。\n#{url_for(only_path: false)}?password=#{URI.encode(@name_card.password)}\n#みんなのP名刺\n"), class: 'btn btn-info namecard__btn', target: '_blank'
         - elsif current_user.provider == 'twitter'
-          = link_to 'Twitterにリンクを投稿', URI.encode("https://twitter.com/intent/tweet?text=私のプロデューサー名刺です。\n#{url_for(only_path: false)}?password=#{URI.encode(@name_card.password)}\n#プロデューサー名刺\n"), class: 'btn btn-info namecard__btn', target: '_blank'
+          = link_to 'Twitterにリンクを投稿', URI.encode("https://twitter.com/intent/tweet?text=私のプロデューサー名刺です。\n#{url_for(only_path: false)}?password=#{URI.encode(@name_card.password)}\n#みなさんのプロデューサー名刺見せてください\n"), class: 'btn btn-info namecard__btn', target: '_blank'
     - elsif user_signed_in? && @is_received
       .col-12
         | 受け取りリストに追加済みです。
