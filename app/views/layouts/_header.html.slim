@@ -10,7 +10,7 @@ nav.navbar.navbar-expand-lg.navbar-dark.fixed-top.bg-dark
         - if user_signed_in?
           li.nav-item.dropdown
             a#navbarDropdown.dropdown-toggle.nav-link[href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"]
-              = current_user.uid
+              = current_user.nickname
             ul.dropdown-menu.dropdown-menu-right
               li
                 = link_to 'マイページ', current_user, class: 'dropdown-item'
