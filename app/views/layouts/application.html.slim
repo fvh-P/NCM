@@ -19,6 +19,7 @@ html
     = render 'layouts/header'
     .container-fluid.col-12.col-lg-8
       - flash.each do |message_type, message|
+        next unless message.is_a?(String)
         div class="alert alert-#{ message_type == 'notice' ? 'warning'  : message_type}" role="alert"
           = message
       = yield
