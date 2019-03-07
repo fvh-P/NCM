@@ -14,7 +14,7 @@ gem 'mastodon-api', require: 'mastodon'
 gem 'omniauth-mastodon', github: 'ezaki3/omniauth-mastodon', branch: 'change-uid'
 gem 'omniauth-twitter'
 gem 'omniauth'
-gem 'bootstrap', '~> 4.1.1'
+gem 'bootstrap', '>= 4.3.1'
 gem 'data-confirm-modal'
 gem 'rails-i18n'
 # Use postgresql as the database for Active Record
