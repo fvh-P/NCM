@@ -20,7 +20,7 @@ javascript:
       $('.search-result__hit-num').empty();
       if (searchText != '') {
         var f = function (name) {
-          var Query = ['PREFIX schema:<http://schema.org/>PREFIX imas:<https://sparql.crssnky.xyz/imasrdf/URIs/imas-schema.ttl#>SELECT (sample(?n) as ?name)WHERE { ?s imas:nameKana|schema:alternateName|imas:alternateNameKana|schema:name ?o; ?p imas:Idol. FILTER(regex(str(?o), "', '")). ?s schema:name|schema:alternateName ?n.}group by(?s)order by(?o)'];
+          var Query = ['PREFIX schema:<http://schema.org/>PREFIX imas:<https://sparql.crssnky.xyz/imasrdf/URIs/imas-schema.ttl#>SELECT (sample(?n) as ?name)WHERE { ?s imas:nameKana|schema:alternateName|imas:alternateNameKana|schema:name ?o; ?p imas:Idol. FILTER(regex(str(?o), "', '")&&lang(?n)="ja"). ?s schema:name|schema:alternateName ?n.}group by(?s)order by(?o)'];
           var url = 'https://sparql.crssnky.xyz/spql/imas/query?query=' + encodeURIComponent(Query[0] + name + Query[1]);
           var req = new XMLHttpRequest();
           req.onreadystatechange = function () {
