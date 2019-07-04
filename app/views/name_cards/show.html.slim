@@ -78,14 +78,14 @@
             span[class='btn btn-sm btn-info namecard-new-btn']
               = idol.name
     - if @name_card.twitter_account_name.present?
-      .col-6.col-lg-4
+      .col-12.col-md-6.col-xl-4
         .namecard__caption
           p
             | Twitterアカウント
         .namecard__sns-name
           = link_to "@#{@name_card.twitter_account_name}", "https://twitter.com/#{@name_card.twitter_account_name}", target: '_blank'
     - if @name_card.mastodon_account_name.present? && @name_card.mastodon_instance_name.present?
-      .col-6.col-lg-4
+      .col-12.col-md-6.col-xl-4
         .namecard__caption
           p
             | mastodonアカウント
@@ -93,7 +93,7 @@
           = link_to "@#{@name_card.mastodon_account_name}@#{@name_card.mastodon_instance_name}", "https://#{@name_card.mastodon_instance_name}/@#{@name_card.mastodon_account_name}", target: '_blank'
     .w-100
     - if @name_card.image?
-      .col-12.col-lg-6
+      .col-12.col-md-6
         .namecard__caption
           p
             | 名刺画像(表)
@@ -101,7 +101,7 @@
           = link_to @name_card.image.url, target: '_blank' do
             - image_tag @name_card.image.url, class: 'img-thumbnail'
     - if @name_card.image_back?
-      .col-12.col-lg-6
+      .col-12.col-md-6
         .namecard__caption
           p
             | 名刺画像(裏)
@@ -110,7 +110,7 @@
             = image_tag @name_card.image_back.url, class: 'img-thumbnail'
     .w-100
     - if @name_card.user_id == current_user&.id
-      .col-12.col-lg-8
+      .col-12.col-xl-8
         .namecard__caption
           p
             | QRコード(名刺作成者にのみ表示)

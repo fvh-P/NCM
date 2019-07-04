@@ -4,44 +4,89 @@
   - provide(:title, '新しい名刺の作成')
   h1
     | 新しい名刺の作成
-  .row.justify-content-center
-    .col-md-8
-      p
-        | ※印は必須の項目です。
-      = form_for(@name_card, url: name_cards_path) do |f|
-        = render 'shared/error_messages', object: f.object
-        = f.label :card_name, '※ 名刺の名称'
-        = f.text_field :card_name, class: 'form-control'
-        = f.label :name, '※ あなたのプロデューサー名 (後ろに"P"はつきません)'
+  .row
+    .col-12
+      = link_to 'キャンセル', current_user, title: 'キャンセル', class: 'btn btn-danger namecard__btn'
+  = form_for(@name_card, url: name_cards_path) do |f|
+    = render 'shared/error_messages', object: f.object
+    .col-12.namecard__cardname
+      = f.text_field :card_name, class: 'form-control', placeholder: '名刺の名前'
+      h5
+        | 名刺ID: 未定
+    .col-12
+      .namecard__caption
+        p
+          | プロデューサー名 (末尾に"P"はつきません)
+      .namecard__producername
         = f.text_field :name, class: 'form-control'
-        = f.label :name, '名刺画像(表)'
-        = f.file_field :image, class: 'form-control'
-        = f.hidden_field :image_cache
-        = f.label :name, '名刺画像(裏)'
-        = f.file_field :image_back, class: 'form-control'
-        = f.hidden_field :image_back_cache
-        = f.label :free_text, '自己紹介文 (1000文字以内)'
+    .col-12
+      .namecard__caption
+        p
+          | 自己紹介 (1000文字以内)
+      .namecard__introduction
         = f.text_area :free_text, class: 'form-control'
-        = f.label :twitter_account, 'Twitterアカウント'
-        table.col-md-12
-          td.atmark
-            | @
-          td
-            = f.text_field :twitter_account_name, class: 'form-control', placeholder: 'ユーザ名', style: 'margin: 5px 0px 5px 0px'
-        = f.label :mastodon_account, 'mastodonアカウント'
-        table.col-md-12
-          td.atmark
-            | @
-          td
-            = f.text_field :mastodon_account_name, class: 'form-control', placeholder: 'ユーザ名', style: 'margin: 5px 0px 5px 0px'
-          td.atmark
-            | @
-          td
-            = f.text_field :mastodon_instance_name, class: 'form-control', placeholder: 'インスタンス名', style: 'margin: 5px 0px 5px 0px'
-        = f.label :password, '合言葉 (無しの場合は空欄のままにしてください。設定するとあなた以外が閲覧する場合に合言葉の入力が必要になります。)'
-        = f.text_field :password, class: 'form-control'
-        = f.label :password_confirmation, '合言葉 (もう一度入力)'
-        = f.text_field :password_confirmation, class: 'form-control'
+    .w-100
+    - unless @name_card.idols.nil?
+      .col-12
+        .namecard__caption
+          p
+            | 担当アイドル
+        .namecard__idols.row
+          = f.fields_for :idols do |idol|
+            = render 'idol_fields', f: idol
+          #detail-association-insertion-point
         = render 'idol_search'
-        = render 'idol_table', f: f
-        = f.submit '名刺を作成する', class: 'btn btn-primary'
+        //= render 'idol_table', f: f
+    .col-12.row
+      .col-12.col-md-6
+        .namecard__caption
+          p
+            | Twitterアカウント
+        .namecard__sns-name
+          table.col-md-12
+            td.atmark
+              | @
+            td
+              = f.text_field :twitter_account_name, class: 'form-control', placeholder: 'ユーザ名', style: 'margin: 5px 0px 5px 0px'
+      .col-12.col-md-6
+        .namecard__caption
+          p
+            | mastodonアカウント
+        .namecard__sns-name
+          table.col-md-12
+            td.atmark
+              | @
+            td
+              = f.text_field :mastodon_account_name, class: 'form-control', placeholder: 'ユーザ名', style: 'margin: 5px 0px 5px 0px'
+            td.atmark
+              | @
+            td
+              = f.text_field :mastodon_instance_name, class: 'form-control', placeholder: 'インスタンス名', style: 'margin: 5px 0px 5px 0px'
+    .w-100
+    .col-12.row
+      .col-12.col-md-6
+        .namecard__caption
+          = f.label :image, '名刺画像(表)'
+        - if @name_card.persisted? && @name_card.image?
+          .namecard__chkbox
+            = f.check_box :remove_image
+            | 削除
+        .namecard__image
+        = f.file_field :image
+        = f.hidden_field :image_cache
+      .col-12.col-md-6
+        .namecard__caption
+          = f.label :image_back, '名刺画像(裏)'
+        - if @name_card.persisted? && @name_card.image_back?
+          .namecard__chkbox
+            = f.check_box :remove_image_back
+            | 削除
+        .namecard__image
+        = f.file_field :image_back
+        = f.hidden_field :image_back_cache
+    .col-12
+      = f.label :password, '合言葉 (任意: 設定するとあなた以外が閲覧する場合に合言葉が必要になります。後で変更できません。)'
+      = f.text_field :password, class: 'form-control'
+      = f.label :password_confirmation, '合言葉 (もう一度入力)'
+      = f.text_field :password_confirmation, class: 'form-control'
+      = f.submit '名刺を作成する', class: 'btn btn-primary'

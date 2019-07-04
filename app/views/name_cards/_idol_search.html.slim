@@ -37,10 +37,10 @@ javascript:
                   'data-association-insertion-node': '#detail-association-insertion-point',
                   'data-association': 'idol',
                   'data-associations': 'idols',
-                  'data-association-insertion-template': "<tr class='nested-fields'><td><div class='field'>" +
-                  `<input type='hidden' name='name_card[idols_attributes][new_idols][name]' id='name_card_idols_attributes_new_idols_name' value='${searchResult[i]}'>${searchResult[i]}</input></div></td>` +
+                  'data-association-insertion-template': "<div class='nested-fields namecard__inner-idol'><span class='field btn btn-sm btn-info namecard__idol-btn'>" +
+                  `<input type='hidden' name='name_card[idols_attributes][new_idols][name]' id='name_card_idols_attributes_new_idols_name' value='${searchResult[i]}'>${searchResult[i]}</input></span>` +
                   "<td><input type='hidden' name='name_card[idols_attributes][new_idols][_destroy]' id='name_card_idols_attributes_new_idols__destroy' value='false'/>" +
-                  "<a class='btn btn-sm btn-danger remove_fields dynamic' role='button' href='#'>削除</a></td></tr>",
+                  "<a class='btn btn-sm btn-danger namecard__idol-btn remove_fields dynamic' role='button' href='#'>削除</a></td></div>",
                   'href': '#',
                 }).text(searchResult[i]).appendTo('#search-result__list');
               }
