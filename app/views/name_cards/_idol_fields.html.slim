@@ -1,7 +1,5 @@
-tr.nested-fields
-  td
-    .field
-      = f.hidden_field :name
-      = f.object.name
-  td
-    = link_to_remove_association '削除', f, class: 'btn btn-sm btn-danger', role: 'button'
+.nested-fields.namecard__inner-idol
+  .field.btn.btn-sm.btn-info.namecard__idol-btn
+    = f.hidden_field :name
+    = f.object.name
+  = link_to_remove_association '削除', f, class: 'btn btn-sm btn-danger namecard__idol-btn', role: 'button'

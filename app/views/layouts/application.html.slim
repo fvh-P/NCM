@@ -7,6 +7,7 @@ html
     |
     = yield :ogp
     = render 'layouts/rails_default'
+    meta[name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"]
     |
     = render 'layouts/shim'
     link[rel="icon" href="/favicon.ico" type="image/vnd.microsoft.icon"]
@@ -17,7 +18,7 @@ html
     link[rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" type="image/png"]
   body
     = render 'layouts/header'
-    .container-fluid.col-12.col-lg-8
+    .container-fluid.col-12.col-xl-8
       - flash.each do |message_type, message|
         - next unless message.is_a?(String)
         div class="alert alert-#{ (message_type == 'notice' || message_type == 'alert') ? 'warning'  : message_type}" role="alert"

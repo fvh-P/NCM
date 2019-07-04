@@ -71,8 +71,8 @@ p {
   }
 
   &__image {
+    margin: 0.5em 1em;
     display: inline-block;
-    padding-top: 1em;
 
     img {
       max-width: 100%;
@@ -91,7 +91,7 @@ p {
   }
 
   &__caption {
-    padding: 0 0.5em;
+    margin: 0 0.5em;
     border-bottom: solid 1px #999999;
 
     p {
@@ -102,10 +102,18 @@ p {
 
   &__introduction,
   &__sns-name {
-    padding: 0.5em 1em;
+    margin: 0.5em 1em;
 
     p {
       font-size: 100%;
+    }
+  }
+
+  &__chkbox {
+    margin: 0.5em 1em;
+
+    input {
+      width: 20px;
     }
   }
 
@@ -122,7 +130,16 @@ p {
   }
 
   &__idols {
-    padding: 0.5em 1em;
+    margin: 0.5em 1em;
+  }
+
+  &__inner-idol {
+    display: inline-block;
+    margin: 0px 5px 0px 0px;
+  }
+
+  &__idol-btn {
+    margin: 0px 0px 5px 0px;
   }
 }
 
@@ -142,6 +159,11 @@ p {
   margin: 0px 5px 5px 0px;
 }
 
+.search-area,
+.search-result {
+  margin: 0px 15px;
+}
+
 .forbidden {
   color: red;
 }
@@ -158,6 +180,17 @@ p {
   text-align: right;
   vertical-align: middle;
   width: 17.5px
+}
+
+.inline {
+  white-space: nowrap
+}
+
+.custom-footer{
+  overflow-x: auto;
+  overflow-y: hidden;
+  flex-wrap: nowrap;
+  padding: 0px;
 }
 
 /* header */
@@ -211,20 +244,17 @@ input {
 
 @media screen and (min-width: 0px) and (max-width : 767px){
   * {
-    font-size: 24px;
+    font-size: 14px;
+  }
+
+  #logo {
+    font-size: 1.3em;
   }
 }
 
 @media screen and (min-width: 768px) and (max-width : 991px){
   * {
-    font-size: 28px;
-  }
-
-  .namecard__qr {
-    img {
-      width: 160px;
-      height: 160px;
-    }
+    font-size: 16px;
   }
 }
 
