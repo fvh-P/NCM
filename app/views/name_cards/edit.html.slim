@@ -1,57 +1,81 @@
 - provide(:title, '名刺の編集')
-h1
-  | 名刺の編集
-.row.justify-content-center
-  .col-md-8
-    = form_for(@name_card, url: name_card_path) do |f|
-      = render 'shared/error_messages', object: f.object
-      = f.label :card_name, '名刺の名前'
-      = f.text_field :card_name, class: 'form-control'
-      = f.label :name, 'あなたのプロデューサー名 (後ろに"P"はつきません)'
+.row
+  .col-12
+    = link_to '戻る', name_card_path, title: '戻る', class: 'btn btn-danger namecard__btn'
+= form_for(@name_card, url: name_card_path) do |f|
+  = render 'shared/error_messages', object: f.object
+  .col-12.namecard__cardname
+    = f.text_field :card_name, class: 'form-control', placeholder: '名刺の名前'
+    h5
+      | 名刺ID:
+      = @name_card.id
+  .col-12
+    .namecard__caption
+      = f.label :name, 'プロデューサー名'
+    .namecard__producername
       = f.text_field :name, class: 'form-control'
-      = f.label :image, '名刺画像(表)'
-      = f.file_field :image
-      = f.hidden_field :image_cache
+  .col-12
+    .namecard__caption
+      = f.label :free_text, '自己紹介文 (1000文字以内)'
+    .namecard__introduction
+      = f.text_area :free_text, class: 'form-control'
+  .w-100
+  - unless @name_card.idols.nil?
+    .col-12
+      .namecard__caption
+        p
+          | 担当アイドル
+      .namecard__idols
+        - @name_card.idols.each do |idol|
+          span[class='btn btn-sm btn-info namecard-new-btn']
+            = idol.name
+      = render 'idol_search'
+      = render 'idol_table', f: f
+  .row
+    .col-12.col-lg-6
+      .namecard__caption
+        = f.label :twitter_account, 'Twitterアカウント名'
+      .namecard__sns-name
+        table.col-md-12
+          td.atmark
+            | @
+          td
+            = f.text_field :twitter_account_name, class: 'form-control', placeholder: 'ユーザ名', style: 'margin: 5px 0px 5px 0px'
+    .col-12.col-lg-6
+      .namecard__caption
+        = f.label :mastodon_account, 'mastodonアカウント名'
+      .namecard__sns-name
+        table.col-md-12
+          td.atmark
+            | @
+          td
+            = f.text_field :mastodon_account_name, class: 'form-control', placeholder: 'ユーザ名', style: 'margin: 5px 0px 5px 0px'
+          td.atmark
+            | @
+          td
+            = f.text_field :mastodon_instance_name, class: 'form-control', placeholder: 'インスタンス名', style: 'margin: 5px 0px 5px 0px'
+  .w-100
+  .row
+    .col-12.col-lg-6
+      .namecard__caption
+        = f.label :image, '名刺画像(表)'
       - if @name_card.persisted? && @name_card.image?
         label
           = f.label :remove_image, '名刺画像(表)を削除'
           = f.check_box :remove_image
-      br
-      - if @name_card.image?
-        = image_tag @name_card.image.url, class: 'img-thumbnail'
-      br
-      = f.label :image_back, '名刺画像(裏)'
-      br
-      = f.file_field :image_back
-      = f.hidden_field :image_back_cache
+      .namecard__image
+      = f.file_field :image
+      = f.hidden_field :image_cache
+    .col-12.col-lg-6
+      .namecard__caption
+        = f.label :image_back, '名刺画像(裏)'
       - if @name_card.persisted? && @name_card.image_back?
         label
           = f.label :remove_image_back, '名刺画像(裏)を削除'
           = f.check_box :remove_image_back
-      br
-      - if @name_card.image_back?
-        = image_tag @name_card.image_back.url, class: 'img-thumbnail'
-      br
-      = f.label :free_text, '自己紹介文 (1000文字以内)'
-      = f.text_area :free_text, class: 'form-control'
-      = f.label :twitter_account, 'Twitterアカウント名'
-      table.col-md-12
-        td.atmark
-          | @
-        td
-          = f.text_field :twitter_account_name, class: 'form-control', placeholder: 'ユーザ名', style: 'margin: 5px 0px 5px 0px'
-      = f.label :mastodon_account, 'mastodonアカウント名'
-      table.col-md-12
-        td.atmark
-          | @
-        td
-          = f.text_field :mastodon_account_name, class: 'form-control', placeholder: 'ユーザ名', style: 'margin: 5px 0px 5px 0px'
-        td.atmark
-          | @
-        td
-          = f.text_field :mastodon_instance_name, class: 'form-control', placeholder: 'インスタンス名', style: 'margin: 5px 0px 5px 0px'
-      p
-        | 合言葉は変更できません。
-      = render 'idol_search'
-      = render 'idol_table', f: f
-      = f.submit '名刺を更新する', class: 'btn btn-primary'
+      .namecard__image
+      = f.file_field :image_back
+      = f.hidden_field :image_back_cache
+  p
+    | 合言葉は変更できません。
+  = f.submit '名刺を更新する', class: 'btn btn-primary'
