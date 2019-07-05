@@ -29,3 +29,7 @@ ja:
         mastodon_instance_name: mastodonのインスタンス名
       idol:
         name: アイドル名
+  helpers:
+    submit:
+      create: "%{model}を作成する"
+      update: "%{model}を更新する"
