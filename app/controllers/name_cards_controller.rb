@@ -77,12 +77,13 @@ class NameCardsController < ApplicationController
 
   def correct_user?
     name_card = NameCard.find(params[:id])
-    if name_card.user_id != current_user.id
-      redirect_to(root_url)
-      flash[:danger] = 'あなたには権限がありません。'
+    if user_signed_in? && (name_card.user_id == current_user.id)
+      true
+    else
+      redirect_back fallback_location: root_path
+      flash[:danger] = 'ログインされていないか、権限がありません。'
       false
     end
-    true
   end
 
   def received?(id)
