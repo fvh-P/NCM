@@ -1,4 +1,4 @@
-= form_for(@name_card, url: name_cards_path) do |f|
+= form_for(@name_card) do |f|
   = render 'shared/error_messages', object: f.object
   .col-12.namecard__cardname
     = f.text_field :card_name, class: 'form-control', placeholder: '名刺の名前'
