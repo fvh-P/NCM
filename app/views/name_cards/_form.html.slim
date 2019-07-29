@@ -3,7 +3,7 @@
   .col-12.namecard__cardname
     = f.text_field :card_name, class: 'form-control', placeholder: '名刺の名前'
     h5
-      | 名刺ID: 未定
+      = "名刺ID: #{@name_card&.id || "未定"}"
   .col-12
     .namecard__caption
       p
