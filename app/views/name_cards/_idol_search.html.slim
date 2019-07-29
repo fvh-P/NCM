@@ -31,7 +31,7 @@ javascript:
               $('#search-result__list').empty();
               $('.search-result__hit-num').empty();
               for (var i = 0; i < searchResult.length; i++) {
-                $('<span>').attr({
+                $('<a>').attr({
                   'class': 'btn btn-sm btn-info namecard-new-btn add_fields',
                   'role': 'button',
                   'data-association-insertion-node': '#detail-association-insertion-point',
