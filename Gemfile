@@ -8,7 +8,7 @@ end
 gem 'rails_12factor', group: :production
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.4.2'
+gem 'rails', '~> 5.2.4'
 gem 'bootsnap', require: false
 gem 'devise'
 gem 'mastodon-api', require: 'mastodon'
