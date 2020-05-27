@@ -43,6 +43,7 @@ gem 'bcrypt', '~> 3.1.7'
 # for image uploader with AWS S3
 gem 'carrierwave'
 gem 'fog'
+gem 'fog-aliyun', '0.3.8'
 gem 'rmagick'
 gem 'dotenv-rails'
 gem 'rqrcode_png'
