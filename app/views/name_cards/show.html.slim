@@ -18,6 +18,26 @@
     meta name="twitter:image"       content="#{@name_card.image}"
     meta name="twitter:site" content="@fvh_P"
   .row
+    .w-100
+    p
+      .alert.alert-warning
+        strong
+          | 【重要なお知らせ】 アイドルマスター公式名刺アプリの発表とNCMの今後について
+        br
+        | 2020年12月29日に放送された「ゆくM@S くるM@S 2020」において、アイドルマスター公式の名刺アプリ「
+        a[href="https://p-gre.idolmaster-official.jp/"]
+          | THE IDOLM@STER P Greeting Kit
+        | 」が近日リリース予定あることが発表されました。
+        br
+        | それに伴い、NCMは
+        strong
+          | 公式アプリのリリース後、一定期間経過したのちに閉鎖
+        | する方向で現在検討しております。
+        small
+          br
+          | 2018年8月にNCMを開設し、2年と少し。短い間でしたがご利用ありがとうございました。公式名刺アプリでまたお会いしましょう。
+        br
+        | これからも、アイマスですよ！アイマス！
     - if @name_card.user_id == current_user&.id
       .col-12
         = link_to '編集', edit_name_card_path, title: '編集する', class: 'btn btn-success namecard__btn'
